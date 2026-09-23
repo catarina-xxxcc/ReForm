@@ -1,0 +1,295 @@
+/* ============================================================
+   ReForm — Design tokens, reset, typography
+   Premium European healthcare: calm, light, clinical, human
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --navy: #0B3B82;
+  --navy-deep: #082B63;
+  --teal: #20C5B5;
+  --teal-2: #35C8BC;
+  --teal-light: #E8F8F5;
+  --blue-soft: #EEF7FC;
+  --bg: #F8FCFC;
+  --white: #FFFFFF;
+
+  /* Text */
+  --text: #12356B;
+  --text-2: #6F91A8;
+  --text-3: #9BB4C4;
+
+  /* Semantic */
+  --success: #20BFA9;
+  --warning: #F4B942;
+  --warning-ink: #B27C10;
+  --danger: #E96B6B;
+  --danger-ink: #C74F4F;
+
+  /* Lines & surfaces */
+  --line: rgba(18, 53, 107, 0.08);
+  --line-2: rgba(18, 53, 107, 0.14);
+  --surface-muted: #F3F8FA;
+  --surface-blue: #EEF7FC;
+
+  /* Radii */
+  --r-card: 24px;
+  --r-lg: 20px;
+  --r-md: 16px;
+  --r-sm: 12px;
+  --r-btn: 16px;
+  --r-pill: 999px;
+
+  /* Shadows — very subtle, never heavy */
+  --shadow-card: 0 1px 2px rgba(11, 59, 130, 0.03), 0 8px 24px rgba(11, 59, 130, 0.05);
+  --shadow-lift: 0 4px 14px rgba(11, 59, 130, 0.09), 0 1px 3px rgba(11, 59, 130, 0.05);
+  --shadow-float: 0 10px 30px rgba(11, 59, 130, 0.14);
+  --shadow-nav: 0 -1px 0 rgba(18, 53, 107, 0.06), 0 -6px 22px rgba(11, 59, 130, 0.05);
+  --shadow-sheet: 0 -10px 44px rgba(11, 59, 130, 0.16);
+
+  /* Type */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 0.32s;
+
+  /* Layout */
+  --nav-h: 74px;
+  --pad-x: 20px;
+  --status-h: 0px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: #EDF3F7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+h1, h2, h3, h4, p, figure { margin: 0; }
+button { font: inherit; color: inherit; }
+ul { margin: 0; padding: 0; list-style: none; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+::selection { background: var(--teal-light); color: var(--navy-deep); }
+
+/* ---------- Device shell ---------- */
+.phone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0 auto;
+  background: var(--bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.app {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.app::-webkit-scrollbar { display: none; }
+
+/* Desktop: present as an iPhone-like device */
+@media (min-width: 900px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 28px;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #FFFFFF 0%, rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, #E9F1F7 0%, #F4F9FB 55%, #EDF5F8 100%);
+  }
+  .phone {
+    height: min(900px, 94vh);
+    min-height: 0;
+    border-radius: 46px;
+    box-shadow:
+      0 0 0 10px #101A22,
+      0 0 0 11.5px #2C3945,
+      0 40px 80px -20px rgba(11, 59, 130, 0.35),
+      0 8px 24px rgba(11, 59, 130, 0.12);
+  }
+}
+
+/* ---------- Mock iOS status bar (desktop preview only) ---------- */
+.statusbar {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  padding: 0 30px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+  background: var(--bg);
+}
+.phone--mockbar .statusbar { display: flex; }
+.statusbar__right { display: flex; align-items: center; gap: 6px; }
+
+/* ---------- Home indicator ---------- */
+.home-indicator {
+  display: none;
+  flex: 0 0 auto;
+  height: 22px;
+  place-items: center;
+  background: var(--white);
+}
+.home-indicator span {
+  width: 134px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(18, 53, 107, 0.18);
+}
+@media (min-width: 900px) {
+  .home-indicator { display: grid; }
+}
+.phone--mockbar .home-indicator { display: grid; }
+
+/* ---------- Typography primitives ---------- */
+.t-display {
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  color: var(--navy);
+}
+.t-h1 {
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.t-h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--navy);
+}
+.t-h3 {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+.t-body {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.t-body-sm { font-size: 15px; line-height: 1.55; color: var(--text); }
+.t-muted { color: var(--text-2); }
+.t-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.t-small { font-size: 13px; line-height: 1.45; color: var(--text-2); }
+.t-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------- Motion primitives ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translate3d(26px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translate3d(-22px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sheetUp {
+  from { transform: translate3d(0, 100%, 0); }
+  to { transform: none; }
+}
+@keyframes sheetDown {
+  from { transform: none; }
+  to { transform: translate3d(0, 100%, 0); }
+}
+@keyframes backdropIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes toastIn {
+  from { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.72); }
+}
+@keyframes jointPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.28); }
+}
+@keyframes sweep {
+  0% { transform: translateX(-40%); opacity: 0; }
+  35% { opacity: 0.75; }
+  100% { transform: translateX(140%); opacity: 0; }
+}
+@keyframes drawStroke { to { stroke-dashoffset: 0; } }
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.72); }
+  60% { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.rise { animation: rise 0.52s var(--ease) backwards; animation-delay: var(--d, 0s); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ReForm — Rehabilitation at home",
+  "short_name": "ReForm",
+  "description": "Continuous rehabilitation at home, with human care when it matters.",
+  "lang": "en",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F8FCFC",
+  "theme_color": "#F8FCFC",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
